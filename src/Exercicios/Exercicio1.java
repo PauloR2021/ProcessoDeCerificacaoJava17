@@ -16,7 +16,8 @@ public class Exercicio1 {
                 "3 - Exercicio List: Digite 4 Notas e Receba a Média\n"+
                 "4 - Exercicio Set: Digite 5 Números aonde não pode ter valores duplicados\n"+
                 "5 - Exercicio Set: Digite 10 Palavras Aonde vai ser mostrado quantas foram Distintas\n"+
-                "6 - Exercicio Map: Digite o Nome e o Telefone de 5 Pessoas");
+                "6 - Exercicio Map: Digite o Nome e o Telefone de 5 Pessoas\n" +
+                "7 - Exercicio Map: Sistema de Estoque com menu");
         System.out.print(">: ");
         int opcao =sc.nextInt();
         sc.nextLine();
@@ -135,7 +136,7 @@ public class Exercicio1 {
         System.out.println();
     }
 
-    //Exercicio 6
+     //Exercicio 6
     public void listaDePessoasETelefone(){
         Map<String,String> lista = new HashMap<>();
 
@@ -156,6 +157,108 @@ public class Exercicio1 {
         System.out.println();
     }
 
+    //Exercicio 7
+    public void sistemaDeEstoqueMap(){
+        Map<String,Integer> estoque = new HashMap<>();
+        int opcao;
+        String nomeProduto;
+        int quantidadeProduto;
+
+        do{
+
+            System.out.println("****** Estoque de Produtos ******");
+            System.out.println("1 - Adicionar Produto Estoque\n" +
+                    "2 - Remover Produto\n" +
+                    "3 - Atualizar Quantidade\n" +
+                    "4 - Listar Todos os Produtos\n" +
+                    "0 - Sair do APP");
+            System.out.print(">: ");
+            opcao = sc.nextInt();
+            sc.nextLine();
+
+
+            switch (opcao){
+                case 1:
+                    //Metodo para Cadastrar Novos Produtos
+                    System.out.println("****** Cadastrar Produto *****");
+                    System.out.print("Digite o Nome do Produto: ");
+                    nomeProduto = sc.nextLine();
+                    System.out.print("Digite a Quantidade no Estoque: ");
+                    quantidadeProduto = sc.nextInt();
+
+                    estoque.put(nomeProduto,quantidadeProduto);
+
+                    System.out.println("****** Produto Cadastrado com Sucesso !! ******");
+
+                    break;
+                case 2:
+                    //Metodo para Remover Produtos
+                    System.out.println("****** Remover Produto Estoque ******");
+                    System.out.println("**Produto no Estoque ******");
+                    for(String produto : estoque.keySet()){
+                        System.out.println("| Produto: "+produto + " | Quantidade no Estoque: "+estoque.get(produto) + " |");
+                    }
+                    System.out.println("****** Digite o Produto que Deseja Remover ******");
+                    System.out.print(">: ");
+                    String produtoRemover = sc.nextLine();
+
+                    estoque.remove(produtoRemover);
+
+                    System.out.println("****** Produto Removido com Sucesso !! ******");
+                    break;
+                case 3:
+                    //Metodo para Atualizar produtos
+                    System.out.println("****** Atualizar Quantidade ******");
+                    System.out.println("**Produto no Estoque ******");
+                    for(String produto : estoque.keySet()){
+                        System.out.println("| Produto: "+produto + " | Quantidade no Estoque: "+estoque.get(produto) + " |");
+                    }
+                    System.out.println("****** Digite o Produto que Deseja Atualizar ******");
+                    System.out.print(">: ");
+                    nomeProduto = sc.nextLine();
+                    System.out.println("Digite a Nova Quantidade: ");
+                    System.out.print(">: ");
+                    int novaQuantidade = sc.nextInt();
+                    sc.nextLine();
+
+                    estoque.put(nomeProduto,novaQuantidade);
+                    System.out.println("****** Produto Atualizado com Sucesso !! ******");
+
+                case 4:
+                    //Metodo para Mostrar Todos os Produtos
+                    System.out.println("****** Mostrar Produtos ******");
+                    System.out.println("**Produto no Estoque ******");
+
+                    if(estoque.isEmpty()){
+                        System.out.println("Não existe produtos Cadastrados...");
+
+                    }else{
+                        for(String produto : estoque.keySet()){
+                            System.out.println("| Produto: "+produto + " | Quantidade no Estoque: "+estoque.get(produto) + " |");
+                        }
+
+                    }
+
+                    for(String produto : estoque.keySet()){
+
+                    }
+
+                    break;
+
+                case 0:
+                    System.out.println("Saindo do sistema...");
+                    break;
+                default:
+                    System.out.println("Opção inválida! Tente novamente.");
+            }
+
+        }while (opcao != 0);
+
+
+
+
+
+    }
 
     //Método Main
     public static void main(String[] args){
@@ -181,6 +284,9 @@ public class Exercicio1 {
                     break;
                 case 6:
                     exer1.listaDePessoasETelefone();
+                    break;
+                case 7:
+                    exer1.sistemaDeEstoqueMap();
                     break;
                 case 0:
                     System.out.println("Deseja Sair do APP : S - Sim / N - Não");
